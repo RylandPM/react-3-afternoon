@@ -14,11 +14,11 @@ This is a live API, please be respectful and mindful of what you post.
 
 ## Setup
 
-* `Fork` this repository.
-* `Clone` your fork.
-* `cd` into the project directory.
-* Run `npm install`.
-* Run `npm start`.
+- `Fork` this repository.
+- `Clone` your fork.
+- `cd` into the project directory.
+- Run `npm install`.
+- Run `npm start`.
 
 ## API Documentation
 
@@ -34,14 +34,14 @@ In this step, we'll use `axios` to fetch `posts` from the API and render them on
 
 ### Instructions
 
-* Add `axios` to the project using `npm install axios`.
-* Open `./src/components/App.js`.
-* Import `axios` into the component.
-* Use `axios` and the API documentation to fetch `posts` in the `componentDidMount` method.
-  * Set the `posts` array returned from the API onto `posts` on `state`.
-* Import the `Post` component.
-* Underneathe the `Compose` component, map over `posts` on `state` and render a `Post` component for each `post`.
-  * Remember that React requires a unique key property when using a `map`.
+- Add `axios` to the project using `npm install axios`.
+- Open `./src/components/App.js`.
+- Import `axios` into the component.
+- Use `axios` and the API documentation to fetch `posts` in the `componentDidMount` method.
+  - Set the `posts` array returned from the API onto `posts` on `state`.
+- Import the `Post` component.
+- Underneathe the `Compose` component, map over `posts` on `state` and render a `Post` component for each `post`.
+  - Remember that React requires a unique key property when using a `map`.
 
 <details>
 
@@ -54,7 +54,7 @@ Let's begin by opening a terminal and `cd` into the root of the project. We'll n
 Now let's open `./src/components/App.js` and import `axios` into the component. Near the top of the file with the other import statements, add the following code:
 
 ```js
-import axios from 'axios';
+import axios from "axios";
 ```
 
 Now that we have `axios` imported, we can go into the `componentDidMount` method and make a `GET` request to the API. Using the API documentation we can see that we need to make a `GET` request to `https://practiceapi.devmountain.com/api/posts`. The API documentation also explains that a `GET` request returns an array of post objects. We'll need to capture this returned array and set it onto `posts` on `App`'s `state`.
@@ -80,7 +80,7 @@ render() {
       <section className="App__content">
 
         <Compose />
-        
+
         {
           posts.map( post => (
             <Post key={ post.id } />
@@ -102,14 +102,14 @@ render() {
 <summary> <code> ./src/components/App.js </code> </summary>
 
 ```js
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
-import Header from './Header/Header';
-import Compose from './Compose/Compose';
-import Post from './Post/Post';
+import Header from "./Header/Header";
+import Compose from "./Compose/Compose";
+import Post from "./Post/Post";
 
 class App extends Component {
   constructor() {
@@ -119,28 +119,22 @@ class App extends Component {
       posts: []
     };
 
-    this.updatePost = this.updatePost.bind( this );
-    this.deletePost = this.deletePost.bind( this );
-    this.createPost = this.createPost.bind( this );
+    this.updatePost = this.updatePost.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
-  
+
   componentDidMount() {
-    axios.get('https://practiceapi.devmountain.com/api/posts').then( results => {
+    axios.get("https://practiceapi.devmountain.com/api/posts").then(results => {
       this.setState({ posts: results.data });
     });
   }
 
-  updatePost() {
-  
-  }
+  updatePost() {}
 
-  deletePost() {
+  deletePost() {}
 
-  }
-
-  createPost() {
-
-  }
+  createPost() {}
 
   render() {
     const { posts } = this.state;
@@ -150,15 +144,11 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
-
           <Compose />
-          
-          {
-            posts.map( post => (
-              <Post key={ post.id } />
-            ))
-          }
 
+          {posts.map(post => (
+            <Post key={post.id} />
+          ))}
         </section>
       </div>
     );
@@ -180,13 +170,13 @@ In this step, we'll pass `props` down into the `Post` component in order to see 
 
 ### Instructions
 
-* Open `./src/components/App.js`.
-* In the `render` method, update the `map` to send the following `props` into `Post`:
-  * `text` - Should equal the `post`'s `text`.
-  * `date` - Should equal the `post`'s `date`.
-* Open `./src/components/Post/Post.js`.
-* Update `POST DATE GOES HERE` to equal the value of `date` on `props`.
-* Update `POST TEXT GOES HERE` to equal the value of `text` on `props`.
+- Open `./src/components/App.js`.
+- In the `render` method, update the `map` to send the following `props` into `Post`:
+  - `text` - Should equal the `post`'s `text`.
+  - `date` - Should equal the `post`'s `date`.
+- Open `./src/components/Post/Post.js`.
+- Update `POST DATE GOES HERE` to equal the value of `date` on `props`.
+- Update `POST TEXT GOES HERE` to equal the value of `text` on `props`.
 
 <details>
 
@@ -198,11 +188,7 @@ Let's begin by opening `./src/components/App.js`. In the `render` method, we'll 
 
 ```js
 {
-  posts.map( post => (
-    <Post key={ post.id }
-          text={ post.text}
-          date={ post.date } />
-  ))
+  posts.map(post => <Post key={post.id} text={post.text} date={post.date} />);
 }
 ```
 
@@ -229,11 +215,7 @@ We can then update `POST DATE GOES HERE` and `POST TEXT GOES HERE` to use these 
 
 ```js
 {
-  posts.map( post => (
-    <Post key={ post.id }
-          text={ post.text}
-          date={ post.date } />
-  ))
+  posts.map(post => <Post key={post.id} text={post.text} date={post.date} />);
 }
 ```
 
@@ -305,12 +287,12 @@ In this step, we'll create the `updatePost` method to use `axios` to update a `p
 
 ### Instructions
 
-* Open `./src/components/App.js`.
-* In the `updatePost` method, use `axios` to send a `PUT` request to the correct endpoint.
-  * Remember that this method will need to work for any `post`. Hint: `function parameters`.
-  * Use the returned data from the request to update `posts` on `state`.
-* Pass the `updatePost` method down as a `prop` called `updatePostFn` in the `posts` `map`.
-* Add a new `prop` to the `map` called `id` that equals the `post`'s `id`.
+- Open `./src/components/App.js`.
+- In the `updatePost` method, use `axios` to send a `PUT` request to the correct endpoint.
+  - Remember that this method will need to work for any `post`. Hint: `function parameters`.
+  - Use the returned data from the request to update `posts` on `state`.
+- Pass the `updatePost` method down as a `prop` called `updatePostFn` in the `posts` `map`.
+- Add a new `prop` to the `map` called `id` that equals the `post`'s `id`.
 
 <details>
 
@@ -326,7 +308,7 @@ updatePost( id, text ) {
 }
 ```
 
-We can then use these parameters to construct our `axios` request and use the returned data to update `posts` on `state`. When using `axios.put()` the second argument is the `request` body. 
+We can then use these parameters to construct our `axios` request and use the returned data to update `posts` on `state`. When using `axios.put()` the second argument is the `request` body.
 
 ```js
 updatePost( id, text ) {
@@ -336,17 +318,19 @@ updatePost( id, text ) {
 }
 ```
 
-Now that our method is constructed, all we need to do is pass it down into the `component` that needs it. In the `render` method, let's update the `map` to include a new `prop` called `updatePostFn` that equals the `updatePost` method. We'll also add a new `prop` called `id` that equals the `post`'d `id`. 
+Now that our method is constructed, all we need to do is pass it down into the `component` that needs it. In the `render` method, let's update the `map` to include a new `prop` called `updatePostFn` that equals the `updatePost` method. We'll also add a new `prop` called `id` that equals the `post`'d `id`.
 
 ```js
 {
-  posts.map( post => (
-    <Post key={ post.id }
-          text={ post.text}
-          date={ post.date }
-          id={ post.id }
-          updatePostFn={ this.updatePost } />
-  ))
+  posts.map(post => (
+    <Post
+      key={post.id}
+      text={post.text}
+      date={post.date}
+      id={post.id}
+      updatePostFn={this.updatePost}
+    />
+  ));
 }
 ```
 
@@ -359,14 +343,14 @@ Now that our method is constructed, all we need to do is pass it down into the `
 <summary> <code> ./src/components/App.js </code> </summary>
 
 ```js
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
-import Header from './Header/Header';
-import Compose from './Compose/Compose';
-import Post from './Post/Post';
+import Header from "./Header/Header";
+import Compose from "./Compose/Compose";
+import Post from "./Post/Post";
 
 class App extends Component {
   constructor() {
@@ -376,30 +360,28 @@ class App extends Component {
       posts: []
     };
 
-    this.updatePost = this.updatePost.bind( this );
-    this.deletePost = this.deletePost.bind( this );
-    this.createPost = this.createPost.bind( this );
+    this.updatePost = this.updatePost.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
-  
+
   componentDidMount() {
-    axios.get('https://practiceapi.devmountain.com/api/posts').then( results => {
+    axios.get("https://practiceapi.devmountain.com/api/posts").then(results => {
       this.setState({ posts: results.data });
     });
   }
 
-  updatePost( id, text ) {
-    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then( results => {
-      this.setState({ posts: results.data });
-    });
+  updatePost(id, text) {
+    axios
+      .put(`https://practiceapi.devmountain.com/api/posts?id=${id}`, { text })
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
-  deletePost() {
+  deletePost() {}
 
-  }
-
-  createPost() {
-
-  }
+  createPost() {}
 
   render() {
     const { posts } = this.state;
@@ -409,19 +391,16 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
-
           <Compose />
-          
-          {
-            posts.map( post => (
-              <Post key={ post.id }
-                    text={ post.text}
-                    date={ post.date }
-                    id={ post.id }
-                    updatePostFn={ this.updatePost } />
-            ))
-          }
-
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              text={post.text}
+              date={post.date}
+              id={post.id}
+              updatePostFn={this.updatePost}
+            />
+          ))}
         </section>
       </div>
     );
@@ -441,17 +420,17 @@ In this step, we'll make the `Edit` button functional by using the `updatePostFn
 
 ### Instructions
 
-* Open `./src/components/Post/Post.js`.
-* Locate the `<div>` element with the class of `Post__content`.
-  * In this `div` we either render the `Edit` component or the `post`'s `text`.
-* Add a new `prop` to the `Edit` component called `updatePostFn` that equals `updatePostFn` off of `props`.
-* Add a new `prop` to the `Edit` component called `id` that equals `id` off of `props`.
-* Update the `text` `prop` to equal `text` off of `props`.
-* Open `./src/components/Post/Edit/Edit.js`.
-* Update the `updatePost` method to:
-  * Call `updatePostFn` off of `props` with the correct `id` and `text` arguments.
-  * Call `hideEdit` off of `props` after `updatePostFn`.
-    * `hideEdit` is reponsible for toggling the `Edit` component off after pressing the `update` button.
+- Open `./src/components/Post/Post.js`.
+- Locate the `<div>` element with the class of `Post__content`.
+  - In this `div` we either render the `Edit` component or the `post`'s `text`.
+- Add a new `prop` to the `Edit` component called `updatePostFn` that equals `updatePostFn` off of `props`.
+- Add a new `prop` to the `Edit` component called `id` that equals `id` off of `props`.
+- Update the `text` `prop` to equal `text` off of `props`.
+- Open `./src/components/Post/Edit/Edit.js`.
+- Update the `updatePost` method to:
+  - Call `updatePostFn` off of `props` with the correct `id` and `text` arguments.
+  - Call `hideEdit` off of `props` after `updatePostFn`.
+    - `hideEdit` is reponsible for toggling the `Edit` component off after pressing the `update` button.
 
 <details>
 
@@ -463,16 +442,16 @@ Let's begin by opening `./src/components/Post/Post.js`. In the `render` method, 
 
 ```js
 <div className="Post__content">
-  {
-    editing
-    ?
-      <Edit text={ text }
-            id={ id }
-            hideEdit={ this.hideEdit }
-            updatePostFn={ updatePostFn } />
-    :
-      <span className="Post__text">{ text }</span>
-  }
+  {editing ? (
+    <Edit
+      text={text}
+      id={id}
+      hideEdit={this.hideEdit}
+      updatePostFn={updatePostFn}
+    />
+  ) : (
+    <span className="Post__text">{text}</span>
+  )}
 </div>
 ```
 
@@ -498,16 +477,16 @@ updatePost() {
 
 ```js
 <div className="Post__content">
-  {
-    editing
-    ?
-      <Edit text={ text }
-            id={ id } // Remember to destructure id off of props or use this.props.id
-            hideEdit={ this.hideEdit }
-            updatePostFn={ updatePostFn } />
-    :
-      <span className="Post__text">{ text }</span>
-  }
+  {editing ? (
+    <Edit
+      text={text}
+      id={id} // Remember to destructure id off of props or use this.props.id
+      hideEdit={this.hideEdit}
+      updatePostFn={updatePostFn}
+    />
+  ) : (
+    <span className="Post__text">{text}</span>
+  )}
 </div>
 ```
 
@@ -541,13 +520,13 @@ In this step, we'll create the `deletePost` method to use `axios` to delete a `p
 
 ### Instructions
 
-* Open `./src/components/App.js`.
-* In the `deletePost` method, use `axios` to send a `DELETE` request to the correct endpoint.
-  * Remember that this method will need to work for any `post`. Hint: `function parameters`.
-  * Use the returned data from the request to update `posts` on `state`.
-* Pass the `deletePost` method down as a `prop` called `deletePostFn` in the `posts` `map`.
-* Open `./src/components/Post/Post.js`.
-* Update the `delete` `span` element to use an `onClick` event that calls `deletePostFn` off of `props`.
+- Open `./src/components/App.js`.
+- In the `deletePost` method, use `axios` to send a `DELETE` request to the correct endpoint.
+  - Remember that this method will need to work for any `post`. Hint: `function parameters`.
+  - Use the returned data from the request to update `posts` on `state`.
+- Pass the `deletePost` method down as a `prop` called `deletePostFn` in the `posts` `map`.
+- Open `./src/components/Post/Post.js`.
+- Update the `delete` `span` element to use an `onClick` event that calls `deletePostFn` off of `props`.
 
 <details>
 
@@ -577,21 +556,23 @@ Now that our method is constructed, let's pass it down in the `Post` component i
 
 ```js
 {
-  posts.map( post => (
-    <Post key={ post.id }
-          id={ post.id }
-          text={ post.text}
-          date={ post.date }
-          updatePostFn={ this.updatePost }
-          deletePostFn={ this.deletePost } />
-  ))
+  posts.map(post => (
+    <Post
+      key={post.id}
+      id={post.id}
+      text={post.text}
+      date={post.date}
+      updatePostFn={this.updatePost}
+      deletePostFn={this.deletePost}
+    />
+  ));
 }
 ```
 
 We can then call this method and pass in the `post`'s `id` using an `onClick` event on the `Delete` `span`.
 
 ```js
-<span onClick={ () => deletePostFn( id ) }>Delete</span>
+<span onClick={() => deletePostFn(id)}>Delete</span>
 ```
 
 </details>
@@ -603,14 +584,14 @@ We can then call this method and pass in the `post`'s `id` using an `onClick` ev
 <summary> <code> ./src/components/App.js </code> </summary>
 
 ```js
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
-import Header from './Header/Header';
-import Compose from './Compose/Compose';
-import Post from './Post/Post';
+import Header from "./Header/Header";
+import Compose from "./Compose/Compose";
+import Post from "./Post/Post";
 
 class App extends Component {
   constructor() {
@@ -620,32 +601,34 @@ class App extends Component {
       posts: []
     };
 
-    this.updatePost = this.updatePost.bind( this );
-    this.deletePost = this.deletePost.bind( this );
-    this.createPost = this.createPost.bind( this );
+    this.updatePost = this.updatePost.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
-  
+
   componentDidMount() {
-    axios.get('https://practiceapi.devmountain.com/api/posts').then( results => {
+    axios.get("https://practiceapi.devmountain.com/api/posts").then(results => {
       this.setState({ posts: results.data });
     });
   }
 
-  updatePost( id, text ) {
-    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then( results => {
-      this.setState({ posts: results.data });
-    });
+  updatePost(id, text) {
+    axios
+      .put(`https://practiceapi.devmountain.com/api/posts?id=${id}`, { text })
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
-  deletePost( id ) {
-    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ id }`).then( results => {
-      this.setState({ posts: results.data });
-    });
+  deletePost(id) {
+    axios
+      .delete(`https://practiceapi.devmountain.com/api/posts?id=${id}`)
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
-  createPost() {
-
-  }
+  createPost() {}
 
   render() {
     const { posts } = this.state;
@@ -655,20 +638,18 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
-
           <Compose />
-          
-          {
-            posts.map( post => (
-              <Post key={ post.id }
-                    id={ post.id }
-                    text={ post.text}
-                    date={ post.date }
-                    updatePostFn={ this.updatePost }
-                    deletePostFn={ this.deletePost } />
-            ))
-          }
 
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              id={post.id}
+              text={post.text}
+              date={post.date}
+              updatePostFn={this.updatePost}
+              deletePostFn={this.deletePost}
+            />
+          ))}
         </section>
       </div>
     );
@@ -685,9 +666,12 @@ export default App;
 <summary> <code> ./src/components/Post/Post.js ( Post__master-menu ) </code> </summary>
 
 ```js
-<div className="Post__master-menu" style={ { display: showMasterMenu ? 'flex' : 'none' } }>
-  <span onClick={ this.showEdit }>Edit</span>
-  <span onClick={ () => deletePostFn( id ) }>Delete</span> { /* Remember to destructure deletePostFn off of props or use this.props.deletePostFn */ }
+<div
+  className="Post__master-menu"
+  style={{ display: showMasterMenu ? "flex" : "none" }}
+>
+  <span onClick={this.showEdit}>Edit</span>
+  <span onClick={() => deletePostFn(id)}>Delete</span> {/* Remember to destructure deletePostFn off of props or use this.props.deletePostFn */}
 </div>
 ```
 
@@ -705,15 +689,15 @@ In this step, we'll create the `createPost` method to use `axios` to create a ne
 
 ### Instructions
 
-* Open `./src/components/App.js`.
-* In the `createPost` method, use `axios` to send a `POST` request to the correct endpoint.
-  * Remember that this method will need to work for any `post`. Hint: `function parameters`.
-  * Use the returned data from the request to update `posts` on `state`.
-* Pass the `createPost` method down as `prop` called `createPostFn` on the `Compose` component.
-* Open `./src/components/Compose/Compose.js`.
-* Update the `createPost` method to:
-  * Call the `createPostFn` off of `props` with the correct `text` argument.
-  * Use `setState` to reset the value of `text` on `state` to an empty string.
+- Open `./src/components/App.js`.
+- In the `createPost` method, use `axios` to send a `POST` request to the correct endpoint.
+  - Remember that this method will need to work for any `post`. Hint: `function parameters`.
+  - Use the returned data from the request to update `posts` on `state`.
+- Pass the `createPost` method down as `prop` called `createPostFn` on the `Compose` component.
+- Open `./src/components/Compose/Compose.js`.
+- Update the `createPost` method to:
+  - Call the `createPostFn` off of `props` with the correct `text` argument.
+  - Use `setState` to reset the value of `text` on `state` to an empty string.
 
 <details>
 
@@ -742,7 +726,7 @@ createPost( text ) {
 Now that our method is constructed, let's pass it down in the `Compose` component.
 
 ```js
-<Compose createPostFn={ this.createPost } />
+<Compose createPostFn={this.createPost} />
 ```
 
 We can then update the `createPost` method in `./src/components/Compose/Compose.js` to call `createPostFn` off of `props` with the value of `text` on `state`. After calling `createPostFn` we should also reset the value of `text` on `state` using `setState`.
@@ -766,14 +750,14 @@ createPost() {
 <summary> <code> ./src/components/App.js </code> </summary>
 
 ```js
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
-import Header from './Header/Header';
-import Compose from './Compose/Compose';
-import Post from './Post/Post';
+import Header from "./Header/Header";
+import Compose from "./Compose/Compose";
+import Post from "./Post/Post";
 
 class App extends Component {
   constructor() {
@@ -783,33 +767,39 @@ class App extends Component {
       posts: []
     };
 
-    this.updatePost = this.updatePost.bind( this );
-    this.deletePost = this.deletePost.bind( this );
-    this.createPost = this.createPost.bind( this );
+    this.updatePost = this.updatePost.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
-  
+
   componentDidMount() {
-    axios.get('https://practiceapi.devmountain.com/api/posts').then( results => {
+    axios.get("https://practiceapi.devmountain.com/api/posts").then(results => {
       this.setState({ posts: results.data });
     });
   }
 
-  updatePost( id, text ) {
-    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${ id }`, { text }).then( results => {
-      this.setState({ posts: results.data });
-    });
+  updatePost(id, text) {
+    axios
+      .put(`https://practiceapi.devmountain.com/api/posts?id=${id}`, { text })
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
-  deletePost( id ) {
-    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ id }`).then( results => {
-      this.setState({ posts: results.data });
-    });
+  deletePost(id) {
+    axios
+      .delete(`https://practiceapi.devmountain.com/api/posts?id=${id}`)
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
-  createPost( text ) {
-    axios.post('https://practiceapi.devmountain.com/api/posts', { text }).then( results => {
-      this.setState({ posts: results.data });
-    });
+  createPost(text) {
+    axios
+      .post("https://practiceapi.devmountain.com/api/posts", { text })
+      .then(results => {
+        this.setState({ posts: results.data });
+      });
   }
 
   render() {
@@ -820,20 +810,18 @@ class App extends Component {
         <Header />
 
         <section className="App__content">
+          <Compose createPostFn={this.createPost} />
 
-          <Compose createPostFn={ this.createPost } />
-          
-          {
-            posts.map( post => (
-              <Post key={ post.id }
-                    id={ post.id }
-                    text={ post.text}
-                    date={ post.date }
-                    updatePostFn={ this.updatePost }
-                    deletePostFn={ this.deletePost } />
-            ))
-          }
-
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              id={post.id}
+              text={post.text}
+              date={post.date}
+              updatePostFn={this.updatePost}
+              deletePostFn={this.deletePost}
+            />
+          ))}
         </section>
       </div>
     );
@@ -871,12 +859,11 @@ Update the project to allow the `Search` bar to find `posts` that contain a cert
 
 ## Resources
 
-
 <details>
 
 <summary> <code> Axios </code> </summary>
 
-* [Axios Docs](https://github.com/axios/axios)
+- [Axios Docs](https://github.com/axios/axios)
 
 </details>
 
@@ -884,11 +871,9 @@ Update the project to allow the `Search` bar to find `posts` that contain a cert
 
 <summary> <code> Props </code> </summary>
 
-* [React Props](https://www.robinwieruch.de/react-pass-props-to-component/#react-props)
+- [React Props](https://www.robinwieruch.de/react-pass-props-to-component/#react-props)
 
 </details>
-
-
 
 ## Contributions
 
